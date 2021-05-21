@@ -1,1 +1,1 @@
-worker: <bot startup command>
+worker: python bot/main.py
