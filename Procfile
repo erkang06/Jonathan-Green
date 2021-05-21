@@ -1,0 +1,1 @@
+worker: <bot startup command>
