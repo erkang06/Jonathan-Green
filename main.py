@@ -141,7 +141,7 @@ async def on_message(message):
         AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=AllArgs))
         await message.channel.send("My watching status has now changed to " + AllArgs)
-       else:
+      else:
         await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
 
 client.run(os.getenv('DISCORD_TOKEN'))
