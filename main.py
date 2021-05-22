@@ -12,7 +12,7 @@ UClient = UrbanClient()
 
 @client.event
 async def on_ready():
-  print('I have logged in as {0.user}'.format(client))
+  print('We have logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
@@ -131,6 +131,15 @@ async def on_message(message):
       FetishEmbed.add_field(name = "Fetish name:", value = Fetish, inline=False)
       FetishEmbed.add_field(name = "Is it real?", value = PrintFetish, inline=False)
       await message.channel.send(embed = FetishEmbed)
-
+    
+    if message.content.startswith('sir, status'):
+      if str(message.content[12]) == "p":
+        AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+        await client.change_presence(activity=discord.Game(name=AllArgs))
+        await message.channel.send("My playing status has now changed to " + AllArgs)
+      if str(message.content[12]) == "w":
+        AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=AllArgs))
+        await message.channel.send("My watching status has now changed to " + AllArgs)
 
 client.run(os.getenv('DISCORD_TOKEN'))
