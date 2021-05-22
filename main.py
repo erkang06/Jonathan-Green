@@ -151,7 +151,7 @@ async def on_message(message):
       await message.channel.send("https://cdn.discordapp.com/avatars/844593412157866045/3e206564d1cc050d67979c54864a5892.png?size=512")
     
     if MsgContent.startswith('sir, hi') or MsgContent.startswith('sir, hello'):
-      with open("DadTalk.txt") as DadTask:
+      with open("DadTalk.txt") as DadTalk:
         Lines = DadTalk.readlines()
         await message.channel.send(random.choice(Lines))
 
