@@ -27,7 +27,7 @@ async def on_message(message):
     if message.content.startswith('sir, help'):
       HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
       HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=False)
-      HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w)", inline=False)
+      HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w)\nsend a selfie", inline=False)
       HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
       await message.channel.send(embed = HelpEmbed)
 
@@ -143,5 +143,8 @@ async def on_message(message):
         await message.channel.send("My watching status has now changed to " + AllArgs)
       else:
         await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
+        
+    if message.content.startswith('sir, send a selfie'):
+      await message.channel.send("https://cdn.discordapp.com/avatars/844593412157866045/3e206564d1cc050d67979c54864a5892.png?size=512")
 
 client.run(os.getenv('DISCORD_TOKEN'))
