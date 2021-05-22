@@ -2,10 +2,20 @@ import discord
 import os
 import rates
 import random
+import time
 from wonderwords import RandomWord
 from udpy import UrbanClient
 
-client = discord.Client()
+Status = open("Status.txt","r")
+AllStatus = Status.readlines()
+if len(AllStatus) == 2:
+  if AllStatus[0] == "p":
+    client = discord.Client(activity = discord.Game(name = AllStatus[1]))
+  else:
+    client = discord.Client(activity = discord.Activity(type = discord.ActivityType.watching, name = AllStatus[1]))
+else:
+  client = discord.Client()
+Status.close()
 r = RandomWord()
 UClient = UrbanClient()
 
@@ -23,11 +33,12 @@ async def on_message(message):
   if "bum" in MsgContent:
     emoji = '🏳️‍🌈'
     await message.add_reaction(emoji)
+  
   if MsgContent.startswith('sir, help'):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
     HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=False)
     HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nsend a selfie", inline=False)
-    HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w)", inline=False)
+    HelpEmbed.add_field(name="Others", value="fetish\ninsult\nwill you marry me?\nstatus (p/w/c)", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
 
@@ -39,7 +50,6 @@ async def on_message(message):
       Rating =  AllArgs + " is " + str(Rate) + "% Q-word!"
     else:
       Rating =  "You are " + str(Rate) + "% Q-word!"
-    
     RateEmbed = discord.Embed(title = "✨ Q-word rate ✨", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
     RateEmbed.set_thumbnail(url = "https://media.discordapp.net/attachments/709674340504829974/810920366233878588/arabic.png")
@@ -53,7 +63,6 @@ async def on_message(message):
       Rating =  AllArgs + " is " + str(Rate) + "% furry!"
     else:
       Rating =  "You are " + str(Rate) + "% furry!"
-    
     RateEmbed = discord.Embed(title = "🐺 Furry rate 🐺", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
     RateEmbed.set_thumbnail(url = "https://upload.wikimedia.org/wikipedia/commons/f/fb/Anthro_vixen_colored.jpg")
@@ -67,7 +76,6 @@ async def on_message(message):
       Rating =  AllArgs + " is " + str(Rate) + "% gay!"
     else:
       Rating =  "You are " + str(Rate) + "% gay!"
-  
     RateEmbed = discord.Embed(title = "🏳️‍🌈 Gay rate 🏳️‍🌈", description = Rating, color = random.randint(0,16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
     RateEmbed.set_thumbnail(url = "https://www.tripridetn.org/wp-content/uploads/pride-flags-11.jpg")
@@ -81,7 +89,6 @@ async def on_message(message):
       Rating =  AllArgs + " is " + str(Rate) + "% dank!"
     else:
       Rating =  "You are " + str(Rate) + "% dank!"
-  
     RateEmbed = discord.Embed(title = "😎 Dank rate 😎", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
     RateEmbed.set_thumbnail(url = "https://dankmemer.lol/40326fed0d1bc75a2688535e70dd31be.png")
@@ -95,7 +102,6 @@ async def on_message(message):
       Rating =  AllArgs + " is " + str(Rate) + "% gamer!"
     else:
       Rating =  "You are " + str(Rate) + "% gamer!"
-  
     RateEmbed = discord.Embed(title = "🎮 Gamer rate 🎮", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
     RateEmbed.set_thumbnail(url = "https://miro.medium.com/max/1400/1*FRtwS_vPzro4ozZ9QJ2bLQ.png")
@@ -109,7 +115,6 @@ async def on_message(message):
       Rating =  AllArgs + " is " + str(Rate) + "% thot!"
     else:
       Rating =  "You are " + str(Rate) + "% thot!"
-  
     RateEmbed = discord.Embed(title = "😩 Thot rate 😩", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
     await message.channel.send(embed = RateEmbed)
@@ -133,14 +138,28 @@ async def on_message(message):
     await message.channel.send(embed = FetishEmbed)
   
   if MsgContent.startswith('sir, status'):
-    if str(message.content[12]) == "p":
+    if str(MsgContent[12]) == "p":
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
-      await client.change_presence(activity=discord.Game(name=AllArgs))
+      await client.change_presence(activity = discord.Game(name = AllArgs))
+      Status = open("Status.txt","w")
+      Status.truncate(0)
+      Status.write("p\n" + AllArgs)
+      Status.close()
       await message.channel.send("My playing status has now changed to " + AllArgs)
-    elif str(message.content[12]) == "w":
+    elif str(MsgContent[12]) == "w":
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
-      await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=AllArgs))
+      await client.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = AllArgs))
+      Status = open("Status.txt","w")
+      Status.truncate(0)
+      Status.write("p\n" + AllArgs)
+      Status.close()
       await message.channel.send("My watching status has now changed to " + AllArgs)
+    elif str(MsgContent[12]) == "c":
+      await client.change_presence(status=None)
+      Status = open("Status.txt","w")
+      Status.truncate(0)
+      Status.close()
+      await message.channel.send("My status has been cleared")
     else:
       await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
       
@@ -151,5 +170,16 @@ async def on_message(message):
     with open("DadTalk.txt") as DadTalk:
       Lines = DadTalk.readlines()
       await message.channel.send(random.choice(Lines))
+
+  if MsgContent.startswith('sir, will you marry me?'):
+    if random.randint(0,5) == 0:
+      await message.channel.send("Of course!")
+    else:
+      await message.channel.send("Why would I?")
+      time.sleep(1)
+      await message.channel.send("I have a wife and kids.")
+  
+  if message.author.id == 204255221017214977 and message.channel.id == 828274056440446976 and message.content.endswith("prayer."):
+    await message.channel.send("🙏")
 
 client.run(os.getenv('DISCORD_TOKEN'))
