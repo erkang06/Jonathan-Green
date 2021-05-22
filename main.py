@@ -16,22 +16,24 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+  MsgContent = message.content.lower()
+  
   if message.author == client.user:
     return
-
-  if "bum" in message.content:
+  
+  if "bum" in MsgContent:
     emoji = '🏳️‍🌈'
     await message.add_reaction(emoji)
 
-  if message.content.startswith('sir, '):
-    if message.content.startswith('sir, help'):
+  if MsgContent.startswith('sir, '):
+    if MsgContent.startswith('sir, help'):
       HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
       HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=False)
       HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w)\nsend a selfie", inline=False)
       HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
       await message.channel.send(embed = HelpEmbed)
 
-    if message.content.startswith('sir, qwordrate'):
+    if MsgContent.startswith('sir, qwordrate'):
       WhichRate = "Q-word"
       Rate = (random.randint(1,101))
       if len(message.content) != 14:
@@ -45,7 +47,7 @@ async def on_message(message):
       RateEmbed.set_thumbnail(url = "https://media.discordapp.net/attachments/709674340504829974/810920366233878588/arabic.png")
       await message.channel.send(embed = RateEmbed)
 
-    if message.content.startswith('sir, furryrate'):
+    if MsgContent.startswith('sir, furryrate'):
       WhichRate = "Q-word"
       Rate = (random.randint(1,101))
       if len(message.content) != 14:
@@ -59,7 +61,7 @@ async def on_message(message):
       RateEmbed.set_thumbnail(url = "https://upload.wikimedia.org/wikipedia/commons/f/fb/Anthro_vixen_colored.jpg")
       await message.channel.send(embed = RateEmbed)
   
-    if message.content.startswith('sir, gayrate'):
+    if MsgContent.startswith('sir, gayrate'):
       WhichRate = "gay"
       Rate = (random.randint(1,101))
       if len(message.content) != 12:
@@ -73,7 +75,7 @@ async def on_message(message):
       RateEmbed.set_thumbnail(url = "https://www.tripridetn.org/wp-content/uploads/pride-flags-11.jpg")
       await message.channel.send(embed = RateEmbed)
   
-    if message.content.startswith('sir, dankrate'):
+    if MsgContent.startswith('sir, dankrate'):
       WhichRate = "dank"
       Rate = (random.randint(1,101))
       if len(message.content) != 13:
@@ -87,7 +89,7 @@ async def on_message(message):
       RateEmbed.set_thumbnail(url = "https://dankmemer.lol/40326fed0d1bc75a2688535e70dd31be.png")
       await message.channel.send(embed = RateEmbed)
 
-    if message.content.startswith('sir, gamerrate'):
+    if MsgContent.startswith('sir, gamerrate'):
       WhichRate = "gamer"
       Rate = (random.randint(1,101))
       if len(message.content) != 14:
@@ -101,7 +103,7 @@ async def on_message(message):
       RateEmbed.set_thumbnail(url = "https://miro.medium.com/max/1400/1*FRtwS_vPzro4ozZ9QJ2bLQ.png")
       await message.channel.send(embed = RateEmbed)
 
-    if message.content.startswith('sir, thotrate'):
+    if MsgContent.startswith('sir, thotrate'):
       WhichRate = "thot"
       Rate = (random.randint(1,101))
       if len(message.content) != 13:
@@ -114,13 +116,13 @@ async def on_message(message):
       rates.Rate(Rate, WhichRate, RateEmbed)
       await message.channel.send(embed = RateEmbed)
 
-    if message.content.startswith('sir, insult'):
+    if MsgContent.startswith('sir, insult'):
       Insult = "You are a " + r.word(include_parts_of_speech=["adjectives"]) + " " + r.word(include_parts_of_speech=["noun"])
       InsultEmbed = discord.Embed(title = "Insult", description = Insult, color = random.randint(0, 16777215))
       InsultEmbed.set_footer(text = "Feel hurt?")
       await message.channel.send(embed = InsultEmbed)
     
-    if message.content.startswith('sir, fetish'):
+    if MsgContent.startswith('sir, fetish'):
       Fetish = r.word(include_parts_of_speech=["noun"]) + " fetish"
       RealDefinition = UClient.get_definition(Fetish)
       if len(RealDefinition) == 0:
@@ -132,7 +134,7 @@ async def on_message(message):
       FetishEmbed.add_field(name = "Is it real?", value = PrintFetish, inline=False)
       await message.channel.send(embed = FetishEmbed)
     
-    if message.content.startswith('sir, status'):
+    if MsgContent.startswith('sir, status'):
       if str(message.content[12]) == "p":
         AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
         await client.change_presence(activity=discord.Game(name=AllArgs))
@@ -144,7 +146,7 @@ async def on_message(message):
       else:
         await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
         
-    if message.content.startswith('sir, send a selfie'):
+    if MsgContent.startswith('sir, send a selfie'):
       await message.channel.send("https://cdn.discordapp.com/avatars/844593412157866045/3e206564d1cc050d67979c54864a5892.png?size=512")
 
 client.run(os.getenv('DISCORD_TOKEN'))
