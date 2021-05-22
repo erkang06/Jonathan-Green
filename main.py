@@ -35,7 +35,7 @@ async def on_message(message):
     WhichRate = "Q-word"
     Rate = (random.randint(1,101))
     if len(message.content) != 14:
-      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
+      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% Q-word!"
     else:
       Rating =  "You are " + str(Rate) + "% Q-word!"
@@ -49,7 +49,7 @@ async def on_message(message):
     WhichRate = "Q-word"
     Rate = (random.randint(1,101))
     if len(message.content) != 14:
-      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
+      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% furry!"
     else:
       Rating =  "You are " + str(Rate) + "% furry!"
@@ -63,7 +63,7 @@ async def on_message(message):
     WhichRate = "gay"
     Rate = (random.randint(1,101))
     if len(message.content) != 12:
-      AllArgs = str(message.content)[11:-1] + str(message.content)[-1]
+      AllArgs = str(message.content)[12:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gay!"
     else:
       Rating =  "You are " + str(Rate) + "% gay!"
@@ -77,7 +77,7 @@ async def on_message(message):
     WhichRate = "dank"
     Rate = (random.randint(1,101))
     if len(message.content) != 13:
-      AllArgs = str(message.content)[12:-1] + str(message.content)[-1]
+      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% dank!"
     else:
       Rating =  "You are " + str(Rate) + "% dank!"
@@ -91,7 +91,7 @@ async def on_message(message):
     WhichRate = "gamer"
     Rate = (random.randint(1,101))
     if len(message.content) != 14:
-      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
+      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gamer!"
     else:
       Rating =  "You are " + str(Rate) + "% gamer!"
@@ -105,7 +105,7 @@ async def on_message(message):
     WhichRate = "thot"
     Rate = (random.randint(1,101))
     if len(message.content) != 13:
-      AllArgs = str(message.content)[12:-1] + str(message.content)[-1]
+      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% thot!"
     else:
       Rating =  "You are " + str(Rate) + "% thot!"
