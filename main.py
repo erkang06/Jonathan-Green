@@ -27,7 +27,7 @@ async def on_message(message):
     if message.content.startswith('sir, help'):
       HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
       HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=False)
-      HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus", inline=False)
+      HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w)", inline=False)
       HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
       await message.channel.send(embed = HelpEmbed)
 
@@ -141,8 +141,6 @@ async def on_message(message):
         AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=AllArgs))
         await message.channel.send("My watching status has now changed to " + AllArgs)
-      elif len(message.content) <= 12:
-        await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
       else:
         await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
 
