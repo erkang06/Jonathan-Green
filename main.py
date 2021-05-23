@@ -27,9 +27,9 @@ async def on_message(message):
   
   if MsgContent.startswith('sir, help'):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
-    HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=False)
-    HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nsend a selfie", inline=False)
-    HelpEmbed.add_field(name="Others", value="fetish\ninsult\nwill you marry me?\nstatus (p/w/c)", inline=False)
+    HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=True)
+    HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie", inline=True)
+    HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w/c)", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
 
