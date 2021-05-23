@@ -6,13 +6,7 @@ import time
 from wonderwords import RandomWord
 from udpy import UrbanClient
 
-if os.getenv('AllStatus'):
-  if os.getenv('StatusType') == "p":
-    client = discord.Client(activity = discord.Game(name = os.getenv('AllStatus')))
-  else:
-    client = discord.Client(activity = discord.Activity(type = discord.ActivityType.watching, name = os.getenv('AllStatus')))
-else:
-  client = discord.Client()
+client = discord.Client()
 r = RandomWord()
 UClient = UrbanClient()
 
@@ -144,15 +138,11 @@ async def on_message(message):
     if str(MsgContent[12]) == "p":
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       await client.change_presence(activity = discord.Game(name = AllArgs))
-      os.environ['AllStatus'] = "p"
-      os.environ['StatusType'] = AllArgs
-      await message.channel.send("My playing status has now changed to " + AllArgs)
+      await message.channel.send("My playing status has now changed to '" + AllArgs + "'")
     elif str(MsgContent[12]) == "w":
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       await client.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = AllArgs))
-      os.environ['AllStatus'] = "w"
-      os.environ['StatusType'] = AllArgs
-      await message.channel.send("My watching status has now changed to " + AllArgs)
+      await message.channel.send("My watching status has now changed to '" + AllArgs + "'")
     elif str(MsgContent[12]) == "c":
       await client.change_presence(status=None)
       os.environ['AllStatus'] = ""
