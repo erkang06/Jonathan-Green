@@ -35,7 +35,7 @@ async def on_message(message):
 
   if MsgContent.startswith('sir, qwordrate'):
     WhichRate = "Q-word"
-    Rate = (random.randint(1,101))
+    Rate = (random.randint(0,101))
     if len(message.content) != 14:
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% Q-word!"
@@ -48,8 +48,8 @@ async def on_message(message):
     await message.channel.send(embed = RateEmbed)
 
   if MsgContent.startswith('sir, furryrate'):
-    WhichRate = "Q-word"
-    Rate = (random.randint(1,101))
+    WhichRate = "furry"
+    Rate = (random.randint(0,101))
     if len(message.content) != 14:
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% furry!"
@@ -63,7 +63,7 @@ async def on_message(message):
   
   if MsgContent.startswith('sir, gayrate'):
     WhichRate = "gay"
-    Rate = (random.randint(1,101))
+    Rate = (random.randint(0,101))
     if len(message.content) != 12:
       AllArgs = str(message.content)[12:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gay!"
@@ -77,7 +77,7 @@ async def on_message(message):
 
   if MsgContent.startswith('sir, dankrate'):
     WhichRate = "dank"
-    Rate = (random.randint(1,101))
+    Rate = (random.randint(0,101))
     if len(message.content) != 13:
       AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% dank!"
@@ -91,7 +91,7 @@ async def on_message(message):
 
   if MsgContent.startswith('sir, gamerrate'):
     WhichRate = "gamer"
-    Rate = (random.randint(1,101))
+    Rate = (random.randint(0,101))
     if len(message.content) != 14:
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gamer!"
@@ -105,7 +105,7 @@ async def on_message(message):
 
   if MsgContent.startswith('sir, thotrate'):
     WhichRate = "thot"
-    Rate = (random.randint(1,101))
+    Rate = (random.randint(0,101))
     if len(message.content) != 13:
       AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% thot!"
