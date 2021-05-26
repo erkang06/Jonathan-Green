@@ -6,7 +6,7 @@ import time
 from wonderwords import RandomWord
 from udpy import UrbanClient
 
-client = discord.Client(activity = discord.Game())
+client = discord.Client(activity = discord.Game(name = "bingo"))
 r = RandomWord()
 UClient = UrbanClient()
 
@@ -21,15 +21,14 @@ async def on_message(message):
   if message.author == client.user:
     return
   
-  if "bum" in MsgContent:
-    emoji = '🏳️‍🌈'
-    await message.add_reaction(emoji)
+  if message.author.id == 204255221017214977 and message.channel.id == 828274056440446976 and message.content.endswith("prayer."):
+    await message.channel.send("🙏")
   
   if MsgContent.startswith('sir, help'):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
     HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=True)
     HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie", inline=True)
-    HelpEmbed.add_field(name="Others", value="fetish\ninsult\nstatus (p/w/c)", inline=False)
+    HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
 
@@ -40,7 +39,7 @@ async def on_message(message):
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% Q-word!"
     else:
-      Rating =  "You are " + str(Rate) + "% Q-word!"
+      Rating =  message.author.mention + " is " + str(Rate) + "% Q-word!"
     
     RateEmbed = discord.Embed(title = "✨ Q-word rate ✨", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
@@ -54,7 +53,7 @@ async def on_message(message):
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% furry!"
     else:
-      Rating =  "You are " + str(Rate) + "% furry!"
+      Rating =  message.author.mention + " is " + str(Rate) + "% furry!"
     
     RateEmbed = discord.Embed(title = "🐺 Furry rate 🐺", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
@@ -68,7 +67,7 @@ async def on_message(message):
       AllArgs = str(message.content)[12:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gay!"
     else:
-      Rating =  "You are " + str(Rate) + "% gay!"
+      Rating =  message.author.mention + " is " + str(Rate) + "% gay!"
   
     RateEmbed = discord.Embed(title = "🏳️‍🌈 Gay rate 🏳️‍🌈", description = Rating, color = random.randint(0,16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
@@ -82,7 +81,7 @@ async def on_message(message):
       AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% dank!"
     else:
-      Rating =  "You are " + str(Rate) + "% dank!"
+      Rating =  message.author.mention + " is " + str(Rate) + "% dank!"
   
     RateEmbed = discord.Embed(title = "😎 Dank rate 😎", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
@@ -96,7 +95,7 @@ async def on_message(message):
       AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gamer!"
     else:
-      Rating =  "You are " + str(Rate) + "% gamer!"
+      Rating =  message.author.mention + " is " + str(Rate) + "% gamer!"
   
     RateEmbed = discord.Embed(title = "🎮 Gamer rate 🎮", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
@@ -110,7 +109,7 @@ async def on_message(message):
       AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% thot!"
     else:
-      Rating =  "You are " + str(Rate) + "% thot!"
+      Rating =  message.author.mention + " is " + str(Rate) + "% thot!"
   
     RateEmbed = discord.Embed(title = "😩 Thot rate 😩", description = Rating, color = random.randint(0, 16777215))
     rates.Rate(Rate, WhichRate, RateEmbed)
@@ -164,8 +163,14 @@ async def on_message(message):
       await message.channel.send("Why would I?")
       time.sleep(1)
       await message.channel.send("I have a wife and kids.")
-  
-  if message.author.id == 204255221017214977 and message.channel.id == 828274056440446976 and message.content.endswith("prayer."):
-    await message.channel.send("🙏")
+
+  if MsgContent.startswith('sir, pp'):
+    if len(message.content) != 7:
+      AllArgs = str(message.content)[7:-1] + str(message.content)[-1]
+    else:
+      AllArgs = message.author.mention
+    PenisSize = '=' * random.randint(0,25)
+    PenisEmbed = discord.Embed(title = "Penis size:", description = AllArgs + "'s penis:\n8" + PenisSize + "3", color = random.randint(0, 16777215))
+    await message.channel.send(embed = PenisEmbed)
 
 client.run(os.getenv('DISCORD_TOKEN'))
