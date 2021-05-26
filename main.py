@@ -27,7 +27,7 @@ async def on_message(message):
   if MsgContent.startswith('sir, help'):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
     HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=True)
-    HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie", inline=True)
+    HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie\nsmell me", inline=True)
     HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
@@ -172,5 +172,11 @@ async def on_message(message):
     PenisSize = '=' * random.randint(0,25)
     PenisEmbed = discord.Embed(title = "Penis size:", description = AllArgs + "'s penis:\n8" + PenisSize + "3", color = random.randint(0, 16777215))
     await message.channel.send(embed = PenisEmbed)
+  
+  if MsgContent.startswith('sir, smell me'):
+    Smell = r.word(include_parts_of_speech=["noun"])
+    SmellEmbed = discord.Embed(title = "What do you smell like?", description = "You smell " + Smell, color = random.randint(0, 16777215))
+    SmellEmbed.set_thumbnail(url = "http://www.freeimageslive.com/galleries/medical/pics/nose2331.jpg")
+    await message.channel.send(embed = SmellEmbed)
 
 client.run(os.getenv('DISCORD_TOKEN'))
