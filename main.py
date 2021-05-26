@@ -174,7 +174,7 @@ async def on_message(message):
     await message.channel.send(embed = PenisEmbed)
   
   if MsgContent.startswith('sir, smell me'):
-    Smell = r.word(include_parts_of_speech=["noun"])
+    Smell = r.word(include_parts_of_speech=["adjective"])
     SmellEmbed = discord.Embed(title = "What do you smell like?", description = "You smell " + Smell, color = random.randint(0, 16777215))
     SmellEmbed.set_thumbnail(url = "http://www.freeimageslive.com/galleries/medical/pics/nose2331.jpg")
     await message.channel.send(embed = SmellEmbed)
