@@ -178,13 +178,5 @@ async def on_message(message):
     SmellEmbed = discord.Embed(title = "What do you smell like?", description = "You smell " + Smell, color = random.randint(0, 16777215))
     SmellEmbed.set_thumbnail(url = "http://www.freeimageslive.com/galleries/medical/pics/nose2331.jpg")
     await message.channel.send(embed = SmellEmbed)
-    
-  if MsgContent.startswith('sir, who is gay'):
-    guild = client.guilds[0]
-    Ids = [member.id for member in guild.members]
-    Gay = random.choice(Ids)
-    GayEmbed = discord.Embed(title = "Who is gay?", description = "<@" + str(Gay) + "> is the gay" , color = random.randint(0, 16777215))
-    GayEmbed.set_thumbnail(url = "https://www.tripridetn.org/wp-content/uploads/pride-flags-11.jpg")
-    await message.channel.send(embed = GayEmbed)
 
 client.run(os.getenv('DISCORD_TOKEN'))
