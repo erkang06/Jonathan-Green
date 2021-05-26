@@ -6,7 +6,7 @@ import time
 from wonderwords import RandomWord
 from udpy import UrbanClient
 
-client = discord.Client()
+client = discord.Client(activity = discord.Game())
 r = RandomWord()
 UClient = UrbanClient()
 
@@ -145,8 +145,6 @@ async def on_message(message):
       await message.channel.send("My watching status has now changed to '" + AllArgs + "'")
     elif str(MsgContent[12]) == "c":
       await client.change_presence(status=None)
-      os.environ['AllStatus'] = ""
-      os.environ['StatusType'] = ""
       await message.channel.send("My status has been cleared")
     else:
       await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
