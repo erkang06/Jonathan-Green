@@ -9,6 +9,7 @@ from udpy import UrbanClient
 client = discord.Client(activity = discord.Game(name = "bingo"))
 r = RandomWord()
 UClient = UrbanClient()
+Ids = [member.id for member in guild.members]
 
 @client.event
 async def on_ready():
@@ -28,7 +29,7 @@ async def on_message(message):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
     HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=True)
     HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie\nsmell me", inline=True)
-    HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)", inline=False)
+    HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)\nwho is gay", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
 
@@ -122,7 +123,7 @@ async def on_message(message):
     await message.channel.send(embed = InsultEmbed)
   
   if MsgContent.startswith('sir, fetish'):
-    Fetish = r.word(include_parts_of_speech=["noun"]) + " fetish"
+    Fetish = r.word(include_parts_of_speech = ["noun"]) + " fetish"
     RealDefinition = UClient.get_definition(Fetish)
     if len(RealDefinition) == 0:
       PrintFetish = "No"
@@ -170,13 +171,19 @@ async def on_message(message):
     else:
       AllArgs = message.author.mention
     PenisSize = '=' * random.randint(0,25)
-    PenisEmbed = discord.Embed(title = "Penis size:", description = AllArgs + "'s penis:\n8" + PenisSize + "3", color = random.randint(0, 16777215))
+    PenisEmbed = discord.Embed(title = "Penis size:", description = AllArgs + "'s penis:\n8" + PenisSize + "D", color = random.randint(0, 16777215))
     await message.channel.send(embed = PenisEmbed)
   
   if MsgContent.startswith('sir, smell me'):
-    Smell = r.word(include_parts_of_speech=["adjective"])
+    Smell = r.word(include_parts_of_speech = ["adjective"])
     SmellEmbed = discord.Embed(title = "What do you smell like?", description = "You smell " + Smell, color = random.randint(0, 16777215))
     SmellEmbed.set_thumbnail(url = "http://www.freeimageslive.com/galleries/medical/pics/nose2331.jpg")
     await message.channel.send(embed = SmellEmbed)
+    
+  if MsgContent.startswith('sir, who is gay'):
+    Gay = random.choice(Ids)
+    GayEmbed = discord.Embed(title = "Who is gay?", description = "<@" + Gay + "> is the gay" , color = random.randint(0, 16777215))
+    GayEmbed.set_thumbnail(url = "https://www.tripridetn.org/wp-content/uploads/pride-flags-11.jpg")
+    await message.channel.send(embed = GayEmbed)
 
 client.run(os.getenv('DISCORD_TOKEN'))
