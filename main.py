@@ -12,7 +12,7 @@ UClient = UrbanClient()
 
 @client.event
 async def on_ready():
-  print('We have logged in as {0.user}'.format(client))
+  print('I have logged in as {0.user}'.format(client))
 
 @client.event
 async def on_message(message):
@@ -180,6 +180,7 @@ async def on_message(message):
     await message.channel.send(embed = SmellEmbed)
     
   if MsgContent.startswith('sir, who is gay'):
+    guild = bot.guilds[0]
     Ids = [member.id for member in guild.members]
     Gay = random.choice(Ids)
     GayEmbed = discord.Embed(title = "Who is gay?", description = "<@" + Gay + "> is the gay" , color = random.randint(0, 16777215))
