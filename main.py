@@ -9,7 +9,6 @@ from udpy import UrbanClient
 client = discord.Client(activity = discord.Game(name = "bingo"))
 r = RandomWord()
 UClient = UrbanClient()
-Ids = [member.id for member in guild.members]
 
 @client.event
 async def on_ready():
@@ -181,6 +180,7 @@ async def on_message(message):
     await message.channel.send(embed = SmellEmbed)
     
   if MsgContent.startswith('sir, who is gay'):
+    Ids = [member.id for member in guild.members]
     Gay = random.choice(Ids)
     GayEmbed = discord.Embed(title = "Who is gay?", description = "<@" + Gay + "> is the gay" , color = random.randint(0, 16777215))
     GayEmbed.set_thumbnail(url = "https://www.tripridetn.org/wp-content/uploads/pride-flags-11.jpg")
