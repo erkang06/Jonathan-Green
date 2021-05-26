@@ -183,7 +183,7 @@ async def on_message(message):
     guild = client.guilds[0]
     Ids = [member.id for member in guild.members]
     Gay = random.choice(Ids)
-    GayEmbed = discord.Embed(title = "Who is gay?", description = "<@" + Gay + "> is the gay" , color = random.randint(0, 16777215))
+    GayEmbed = discord.Embed(title = "Who is gay?", description = "<@" + str(Gay) + "> is the gay" , color = random.randint(0, 16777215))
     GayEmbed.set_thumbnail(url = "https://www.tripridetn.org/wp-content/uploads/pride-flags-11.jpg")
     await message.channel.send(embed = GayEmbed)
 
