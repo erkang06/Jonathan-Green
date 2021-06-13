@@ -190,7 +190,7 @@ async def on_message(message):
       await message.channel.send("***" + AllArgs.upper() + "***")
   if MsgContent.startswith('sir, whisper'):
     if len(MsgContent) == 12:
-      await message.channel.send("Say something for me to shout, you numpty!")
+      await message.channel.send("Say something for me to whisper, you numpty!")
     else:
       AllArgs = message.content[13:-1] + message.content[-1]
       await message.channel.send("*" + AllArgs.lower() + "*")
