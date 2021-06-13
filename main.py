@@ -196,7 +196,7 @@ async def on_message(message):
       AllArgs = message.content[13:-1] + message.content[-1]
       await message.channel.send("*" + AllArgs.lower() + "*")
   
-  if MsgContent.startswith('sir, botservers'):
+  if MsgContent.startswith('sir, servers'):
     await message.channel.send("I'm in " + str(len(client.guilds)) + " servers!")
 
 client.run(os.getenv('DISCORD_TOKEN'))
