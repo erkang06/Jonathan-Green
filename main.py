@@ -6,13 +6,15 @@ import time
 from wonderwords import RandomWord
 from udpy import UrbanClient
 
-client = discord.Client(activity = discord.Game(name = "bingo"))
+client = discord.Client(activity = discord.Game(name = 'bingo'))
 r = RandomWord()
 UClient = UrbanClient()
 
 @client.event
 async def on_ready():
   print('I have logged in as {0.user}'.format(client))
+  CentralShit = client.get_channel(709674340504829974)
+  await CentralShit.send("Hey guys, I'm back")
 
 @client.event
 async def on_message(message):
@@ -27,7 +29,7 @@ async def on_message(message):
   if MsgContent.startswith('sir, help'):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
     HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=True)
-    HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie\nsmell me", inline=True)
+    HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie\nsmell me\nshout", inline=True)
     HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
@@ -36,7 +38,7 @@ async def on_message(message):
     WhichRate = "Q-word"
     Rate = (random.randint(0,100))
     if len(message.content) != 14:
-      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+      AllArgs = message.content[14:-1] + message.content[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% Q-word!"
     else:
       Rating =  message.author.mention + " is " + str(Rate) + "% Q-word!"
@@ -50,7 +52,7 @@ async def on_message(message):
     WhichRate = "furry"
     Rate = (random.randint(0,100))
     if len(message.content) != 14:
-      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+      AllArgs = message.content[14:-1] + message.content[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% furry!"
     else:
       Rating =  message.author.mention + " is " + str(Rate) + "% furry!"
@@ -64,7 +66,7 @@ async def on_message(message):
     WhichRate = "gay"
     Rate = (random.randint(0,100))
     if len(message.content) != 12:
-      AllArgs = str(message.content)[12:-1] + str(message.content)[-1]
+      AllArgs = message.content[12:-1] + message.content[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gay!"
     else:
       Rating =  message.author.mention + " is " + str(Rate) + "% gay!"
@@ -78,7 +80,7 @@ async def on_message(message):
     WhichRate = "dank"
     Rate = (random.randint(0,100))
     if len(message.content) != 13:
-      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
+      AllArgs = message.content[13:-1] + message.content[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% dank!"
     else:
       Rating =  message.author.mention + " is " + str(Rate) + "% dank!"
@@ -92,7 +94,7 @@ async def on_message(message):
     WhichRate = "gamer"
     Rate = (random.randint(0,100))
     if len(message.content) != 14:
-      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+      AllArgs = message.content[14:-1] + message.content[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% gamer!"
     else:
       Rating =  message.author.mention + " is " + str(Rate) + "% gamer!"
@@ -106,7 +108,7 @@ async def on_message(message):
     WhichRate = "thot"
     Rate = (random.randint(0,100))
     if len(message.content) != 13:
-      AllArgs = str(message.content)[13:-1] + str(message.content)[-1]
+      AllArgs = message.content[13:-1] + message.content[-1]
       Rating =  AllArgs + " is " + str(Rate) + "% thot!"
     else:
       Rating =  message.author.mention + " is " + str(Rate) + "% thot!"
@@ -134,20 +136,21 @@ async def on_message(message):
     await message.channel.send(embed = FetishEmbed)
   
   if MsgContent.startswith('sir, status'):
-    if str(MsgContent[12]) == "p":
-      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+    if len(MsgContent) == 11:
+      await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
+    elif MsgContent[12] == "p":
+      AllArgs = message.content[14:-1] + message.content[-1]
       await client.change_presence(activity = discord.Game(name = AllArgs))
       await message.channel.send("My playing status has now changed to '" + AllArgs + "'")
-    elif str(MsgContent[12]) == "w":
-      AllArgs = str(message.content)[14:-1] + str(message.content)[-1]
+    elif MsgContent[12] == "w":
+      AllArgs = message.content[14:-1] + message.content[-1]
       await client.change_presence(activity = discord.Activity(type = discord.ActivityType.watching, name = AllArgs))
       await message.channel.send("My watching status has now changed to '" + AllArgs + "'")
-    elif str(MsgContent[12]) == "c":
+    elif MsgContent[12] == "c":
       await client.change_presence(status=None)
       await message.channel.send("My status has been cleared")
     else:
       await message.channel.send("Type 'sir,' followed by either 'p' or 'w' then your status of choice")
-      
   if MsgContent.startswith('sir, send a selfie'):
     await message.channel.send("https://cdn.discordapp.com/avatars/844593412157866045/3e206564d1cc050d67979c54864a5892.png?size=512")
   
@@ -166,7 +169,7 @@ async def on_message(message):
 
   if MsgContent.startswith('sir, pp'):
     if len(message.content) != 7:
-      AllArgs = str(message.content)[7:-1] + str(message.content)[-1]
+      AllArgs = message.content[7:-1] + message.content[-1]
     else:
       AllArgs = message.author.mention
     PenisSize = '=' * random.randint(0,25)
@@ -178,5 +181,12 @@ async def on_message(message):
     SmellEmbed = discord.Embed(title = "What do you smell like?", description = "You smell " + Smell, color = random.randint(0, 16777215))
     SmellEmbed.set_thumbnail(url = "http://www.freeimageslive.com/galleries/medical/pics/nose2331.jpg")
     await message.channel.send(embed = SmellEmbed)
+  
+  if MsgContent.startswith('sir, shout'):
+    if len(MsgContent) == 10:
+      await message.channel.send("Say something for me to shout, you numpty!")
+    else:
+      AllArgs = message.content[11:-1] + message.content[-1]
+      await message.channel.send(AllArgs.upper())
 
 client.run(os.getenv('DISCORD_TOKEN'))
