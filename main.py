@@ -30,7 +30,7 @@ async def on_message(message):
     HelpEmbed = discord.Embed(title = "Every command there is", color = random.randint(0, 16777215))
     HelpEmbed.add_field(name="Rates", value="qwordrate\nfurryrate\ngayrate\ndankrate\ngamerrate\nthotrate", inline=True)
     HelpEmbed.add_field(name="Talking to Jonathan", value="hello\nwill you marry me?\nsend a selfie\nsmell me\nshout\nwhisper", inline=True)
-    HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)", inline=False)
+    HelpEmbed.add_field(name="Others", value="fetish\ninsult\npp\nstatus (p/w/c)\nservers", inline=False)
     HelpEmbed.set_footer(text = "Type 'sir,' followed by the cmd you want to use")
     await message.channel.send(embed = HelpEmbed)
 
@@ -188,11 +188,15 @@ async def on_message(message):
     else:
       AllArgs = message.content[11:-1] + message.content[-1]
       await message.channel.send("***" + AllArgs.upper() + "***")
+  
   if MsgContent.startswith('sir, whisper'):
     if len(MsgContent) == 12:
       await message.channel.send("Say something for me to whisper, you numpty!")
     else:
       AllArgs = message.content[13:-1] + message.content[-1]
       await message.channel.send("*" + AllArgs.lower() + "*")
+  
+  if MsgContent.startswith('sir, botservers'):
+    await message.channel.send("I'm in " + str(len(client.guilds)) + " servers!")
 
 client.run(os.getenv('DISCORD_TOKEN'))
